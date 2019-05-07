@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -27,11 +26,18 @@ public class MainController {
         this.userService = userService;
         this.roleService = roleService;
     }
+
+    @GetMapping("/login")
+    @PostMapping("/login")
+    public String login(){
+        return "login";
+    }
+
     @GetMapping
     @PostMapping
     public String main(HttpServletRequest request) {
         request.getSession().removeAttribute("user");
-        return "main";
+        return "login";
     }
 
     @RequestMapping(value = "/admin/show", method = {RequestMethod.GET, RequestMethod.POST})
